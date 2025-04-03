@@ -59,12 +59,12 @@ jobs:
       - name: Give bin/rails execute permission
         run: chmod +x bin/rails
           
-      - name: Prepare database
+      - name: Run database migrations
         env:
           RAILS_ENV: test
-        run: bin/rails db:prepare
-
+        run: bundle exec rails db:migrate
+      
       - name: Run tests
         env:
           RAILS_ENV: test
-        run: bin/rails db:test:prepare test
+        run: bundle exec rails test
