@@ -10,14 +10,14 @@ RSpec.describe Promotion, type: :model do
       should validate_presence_of(:name)
       should validate_presence_of(:product_id)
       should validate_presence_of(:promotion_type)
-      should define_enum_for(:promotion_type).with_values([:bogof, :change_price, :percentual_discount])
+      should define_enum_for(:promotion_type).with_values([ :bogof, :change_price, :percentual_discount ])
     end
   end
 
   describe "validations by promotion_type" do
     let(:product) { build_stubbed(:product) }
 
-    context "when promotion_type is change_price" do 
+    context "when promotion_type is change_price" do
       subject do
         described_class.new(
           name: "Change Price Promo",
@@ -57,7 +57,7 @@ RSpec.describe Promotion, type: :model do
       end
     end
 
-    context "when promotion_type is percentual_discount" do 
+    context "when promotion_type is percentual_discount" do
       subject do
         described_class.new(
           name: "Percentual Discount Promo",
@@ -82,7 +82,7 @@ RSpec.describe Promotion, type: :model do
         subject.validate
         expect(subject.errors[:discount_percentage]).to include("must be greater than or equal to 0.01")
       end
-      
+
       it "is invalid if discount_percentage is greater than 99.99" do
         subject.discount_percentage = 100
         subject.trigger_quantity = 3
@@ -97,7 +97,7 @@ RSpec.describe Promotion, type: :model do
       end
     end
 
-    context "when promotion_type is bogof" do 
+    context "when promotion_type is bogof" do
       subject do
         described_class.new(
           name: "BOGOF Promo",
