@@ -1,0 +1,2 @@
+class ComputeTotalService
+end
