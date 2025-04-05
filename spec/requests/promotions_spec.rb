@@ -105,9 +105,13 @@ RSpec.describe "Promotions API", type: :request do
     end
 
     it "does not create promotion with invalid attributes" do
-      post "/promotions", params: { promotion: invalid_attributes }
-      expect(response).to have_http_status(:unprocessable_entity)
-      expect(JSON.parse(response.body)["errors"]).to be_present
+        post "/promotions", params: { promotion: invalid_attributes }
+        expect(response).to have_http_status(:unprocessable_entity)
+        errors = JSON.parse(response.body)
+
+        expect(errors["name"]).to include("can't be blank")
+        expect(errors["promotion_type"]).to include("can't be blank")
+        puts "BODY: #{response.body}"
     end
 
     it "fails to create percentual_discount without required fields" do
@@ -116,10 +120,10 @@ RSpec.describe "Promotions API", type: :request do
       post "/promotions", params: { promotion: incomplete_attrs }
 
       expect(response).to have_http_status(:unprocessable_entity)
-      errors = JSON.parse(response.body)["errors"]
+      errors = JSON.parse(response.body)
 
-      expect(errors).to include("Discount percentage must be present")
-      expect(errors).to include("Trigger quantity must be present")
+      expect(errors["discount_percentage"]).to include("must be present")
+      expect(errors["trigger_quantity"]).to include("must be present")
     end
   end
 
@@ -135,7 +139,9 @@ RSpec.describe "Promotions API", type: :request do
       put "/promotions/#{bogof_promo.id}", params: { promotion: { name: "" } }
 
       expect(response).to have_http_status(:unprocessable_entity)
-      expect(JSON.parse(response.body)["errors"]).to be_present
+      errors = JSON.parse(response.body)
+
+      expect(errors["name"]).to include("can't be blank")
     end
 
     it "returns 404 if promotion not found" do
