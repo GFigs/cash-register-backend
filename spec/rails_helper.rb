@@ -77,4 +77,19 @@ RSpec.configure do |config|
   RSpec.configure do |config|
     config.include FactoryBot::Syntax::Methods
   end
+
+  RSpec.configure do |config|
+    # Limpieza antes de correr el suite entera
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.clean_with(:truncation)
+    end
+  
+    # Usa DatabaseCleaner alrededor de cada test
+    config.around(:each) do |example|
+      DatabaseCleaner.cleaning do
+        example.run
+      end
+    end
+  end
 end
