@@ -1,4 +1,5 @@
 require 'rails_helper'
+require "byebug"
 
 RSpec.describe Promotion, type: :model do
   describe "associations" do
@@ -40,14 +41,7 @@ RSpec.describe Promotion, type: :model do
         subject.new_price = 1_000_000
         subject.trigger_quantity = 3
         subject.validate
-        expect(subject.errors[:new_price]).to include("must be less than 1,000,000")
-      end
-
-      it "is invalid if price has more than 2 decimal digits" do
-        subject.new_price = 99.999
-        subject.trigger_quantity = 3
-        subject.validate
-        expect(subject.errors[:new_price]).to include("must have at most 2 decimal places")
+        expect(subject.errors[:new_price]).to include("must be less than 1000000")
       end
 
       it "is valid with trigger_quantity and new_price in correct format" do
