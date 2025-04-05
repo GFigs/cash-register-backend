@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :products
 
   resources :promotions
+
+  post "checkout", to: "compute_total#create"
 end
