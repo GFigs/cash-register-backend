@@ -52,7 +52,7 @@ bundle install
 ### 3. Create and migrate the database
 
 bash
-bin/rails db:create db:migrate
+bin/rails db:create db:migrate db:seed
 
 ### 4. Run the Rails server
 
