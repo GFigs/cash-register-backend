@@ -30,7 +30,6 @@ RSpec.describe "Checkouts API", type: :request do
     end
 
     describe "POST /checkout" do
-
     it "returns correct total and promotions for GR1,GR1" do
         post "/checkout", params: {
         product_codes: [ "GR1", "GR1" ]
