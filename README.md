@@ -16,8 +16,8 @@ It is designed to be simple, readable, maintainable, and easily extensible. The 
 
 ##  Tech Stack
 
-- **Ruby version:** 3.2.2  
-- **Rails version:** 7.x  
+- **Ruby version:** 3.3.7 
+- **Rails version:** 8.0.2
 - **Database:** SQLite3 (for development, can be changed)  
 - **Testing Framework:** RSpec  
 
@@ -27,11 +27,10 @@ It is designed to be simple, readable, maintainable, and easily extensible. The 
 
 Ensure you have the following installed:
 
-- Ruby >= 3.2.2  
-- Rails >= 7.0  
+- Ruby >= 3.3.7 
+- Rails >= 8.0.2
 - Bundler  
 - SQLite3  
-- Node.js & Yarn (for JS assets, optional)  
 
 ---
 
