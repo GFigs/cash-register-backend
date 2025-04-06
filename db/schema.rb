@@ -25,9 +25,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_04_224920) do
     t.integer "promotion_type"
     t.integer "trigger_quantity"
     t.decimal "new_price", precision: 8, scale: 2
-    t.decimal "discount_percentage", precision: 4, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "discount_percentage"
+    t.decimal "#<ActiveRecord::ConnectionAdapters::SQLite3::TableDefinition:0x0000022b3416c9f0>"
     t.index ["product_id"], name: "index_promotions_on_product_id"
   end
 
