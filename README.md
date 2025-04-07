@@ -40,7 +40,7 @@ Ensure you have the following installed:
 ```
 bash
 
-git clone <repository-url>
+git clone https://github.com/GFigs/cash-register-backend
 cd cash-register-backend
 ```
 
@@ -63,6 +63,9 @@ rails server
 ```
 
 ---
+### rack-cors
+The port allowed to use the API is "http://localhost:5173"
+It is possible to change this in /config/initializers/cors.rb
 
 ###  Running the Test Suite
 ```
