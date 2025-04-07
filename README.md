@@ -18,7 +18,7 @@ It is designed to be simple, readable, maintainable, and easily extensible. The 
 
 - **Ruby version:** 3.3.7 
 - **Rails version:** 8.0.2
-- **Database:** SQLite3 (for development, can be changed)  
+- **Database:** SQLite3
 - **Testing Framework:** RSpec  
 
 ---
@@ -37,44 +37,45 @@ Ensure you have the following installed:
 ##  Setup & Configuration
 
 ### 1. Clone the repository
-
+```
 bash
 
 git clone <repository-url>
 cd cash-register-backend
+```
 
 ### 2. Install dependencies
-
+```
 bash
 bundle install
+```
 
 ### 3. Create and migrate the database
-
+```
 bash
-bin/rails db:create db:migrate db:seed
+bin/rails db:migrate db:seed
+```
 
 ### 4. Run the Rails server
-
+```
 bash
 rails server
+```
 
 ---
 
 ###  Running the Test Suite
-
+```
 bash
 bundle exec rspec
+```
 
 ---
 
 ### API Endpoints
-## Health Check
-GET /up
-Returns a simple JSON response indicating the API is running.
 
----
 ## Products
-
+(No all endpoints are implemented in the frontend, some are for future developement in admin actions)
 List all products
 GET /products
 
@@ -86,6 +87,7 @@ GET /products/:id
 
 Create a product
 POST /products
+```
 Content-Type: application/json
 {
   "product": {
@@ -94,7 +96,7 @@ Content-Type: application/json
     "price": 3.11
   }
 }
-
+```
 Update a product
 PATCH /products/:id
 
@@ -102,8 +104,8 @@ Delete a product
 DELETE /products/:id
 
 ---
-## Promotions
-
+## Promotions 
+(No all endpoints are implemented in the frontend, some are for future developement in admin actions)
 List all promotions
 GET /promotions
 
@@ -115,6 +117,7 @@ GET /promotions/:id
 
 Create a promotion
 POST /promotions
+```
 Content-Type: application/json
 {
   "promotion": {
@@ -124,6 +127,7 @@ Content-Type: application/json
     "trigger_quantity": 2
   }
 }
+```
 
 Accepted promotion_type values:
 buy_one_get_one_free
@@ -141,11 +145,14 @@ DELETE /promotions/:id
 Calculates the total for a basket of product codes, applying any valid promotions.
 
 POST /checkout
+```
 Content-Type: application/json
 {
   "product_codes": ["GR1", "CF1", "SR1", "CF1", "CF1"]
 }
+```
 Response:
+```
 json
 {
   "total": 30.57,
@@ -160,15 +167,16 @@ json
     }
   ]
 }
+```
 
 ## Pricing Rules Implemented
 The pricing logic is handled in app/services/compute_total_service.rb. It supports:
 
-BOGO (Buy-One-Get-One-Free) for Green Tea (GR1)
+BOGO (Buy-One-Get-One-Free)
 
-Bulk price discount for Strawberries (SR1) – price drops to €4.50 when buying 3+
+Bulk discount - Set new price
 
-Bulk percentage discount for Coffee (CF1) – price drops to 2/3 when buying 3+
+Bulk discount - percentual discount
 
 Promotions are defined in the database and can be created/updated via the /promotions API.
 
@@ -189,9 +197,7 @@ Built with TDD from the beginning
 
 Clean separation of concerns (controllers, services, models)
 
-Easily extendable for future promotion types or pricing rules
-
-Designed to support both human and programmatic use
+Easily extendable for future pricing rules
 
 ### Contact
 If you have any questions, suggestions or issues, feel free to create a GitHub issue or reach out.
