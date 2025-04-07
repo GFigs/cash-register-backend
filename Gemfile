@@ -52,6 +52,6 @@ group :development, :test do
 end
 
 group :test do
-  gem "shoulda-matchers", "~> 5.0"
+  gem "shoulda-matchers", "~> 6.4"
   gem "database_cleaner-active_record"
 end
